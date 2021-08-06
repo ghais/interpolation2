@@ -1,38 +1,10 @@
-Name:             interpolation
+Name:             interpolation2
 Version:          0.1.1.2
 License:          BSD3
 License-File:     LICENSE
-Author:           Henning Thielemann
-Maintainer:       Henning Thielemann <haskell@henning-thielemann.de>
-Homepage:         https://hub.darcs.net/thielema/interpolation/
+Homepage:         https://github.com/ghais/interpolation2
 Category:         Math
-Synopsis:         piecewise linear and cubic Hermite interpolation
-Description:
-  Represent real functions by linear or cubic polynomial segments.
-  The package provides both data structures
-  for efficient lookup of interpolation intervals,
-  and computation of basis functions.
-  .
-  There are two examples that can be built with
-  .
-  > cabal install -fbuildExamples
-  .
-  * @example/Plot.hs@:
-    Interpolate a sinus curve using piecewise linear interpolation
-    and piecewise Hermite cubic interpolation.
-    For the latter one we provide the derivatives of the sinus function
-    at the interpolation nodes.
-  .
-  * @example/Fit.hs@:
-    Demonstrates how to use the basis functions
-    for fitting an interpolation function to a given function
-    using a linear least squares solver like @<\>@ from @lapack@.
-    We use a distorted sinus as target.
-  .
-  The package needs only Haskell 98.
-  Most of the package dependencies are only needed for the examples
-  and are only installed if you enable to build them.
-Tested-With:      GHC==7.4.2, GHC==7.6.3, GHC==7.8.4, GHC==7.10.1
+Synopsis:         piecewise linear and cubic Hermite coercible interpolation
 Cabal-Version:    >=1.8
 Build-Type:       Simple
 Extra-Source-Files:
@@ -46,20 +18,15 @@ Flag lapack
   description: Build examples that depend on lapack
   default:     True
 
-Source-Repository this
-  Tag:         0.1.1.2
-  Type:        darcs
-  Location:    https://hub.darcs.net/thielema/interpolation/
-
-Source-Repository head
-  Type:        darcs
-  Location:    https://hub.darcs.net/thielema/interpolation/
+source-repository head
+  type:                git
+  location:            https://github.com/ghais/interpolation2.git
 
 Library
   Build-Depends:
-    utility-ht >=0.0.1 && <0.1,
-    base >=4 && <5
-
+      utility-ht >=0.0.1 && <0.1
+    , base >=4 && <5
+    , sorted-list
   GHC-Options:      -Wall
   Hs-Source-Dirs:   src, private
   Exposed-Modules:
@@ -71,6 +38,7 @@ Library
     Numeric.Interpolation.Basis.Compact
     Numeric.Interpolation.Basis.Full
     Numeric.Interpolation.Sample
+    Numeric.Interpolation.Basis
   Other-Modules:
     Numeric.Interpolation.Private.Piece
     Numeric.Interpolation.Private.Basis
@@ -83,7 +51,7 @@ Executable interpolation-plot
   GHC-Options:         -Wall
   If flag(buildExamples)
     Build-Depends:
-      interpolation,
+      interpolation2,
       gnuplot >=0.5.6 && <0.6,
       utility-ht >=0.0.9 && <0.1,
       base >=4.5 && <5
@@ -97,7 +65,7 @@ Executable interpolation-fit
   GHC-Options:         -Wall
   If flag(buildExamples) && flag(lapack)
     Build-Depends:
-      interpolation,
+      interpolation2,
       lapack >=0.3 && <0.4,
       tfp >=1.0 && <1.1,
       comfort-array >=0.4 && <0.5,
@@ -120,7 +88,7 @@ Test-Suite interpolation-test
   Hs-Source-Dirs:      test, private
   GHC-Options:         -Wall
   Build-Depends:
-    interpolation,
+    interpolation2,
     doctest-exitcode-stdio >=0.0 && <0.1,
     doctest-lib >=0.1 && <0.2,
     QuickCheck >=2.4 && <3,

@@ -179,12 +179,12 @@ main :: IO ()
 main = do
    let xs = [0, 1, 3, 4, 6, 7]
        exs = (-1) : xs ++ [8]
-   void $ GP.plotDefault $ plotBasisFunctions typeLinear xs
+   --void $ GP.plotDefault $ plotBasisFunctions typeLinear xs
    
    --void $ GP.plotDefault $ plotBasisFunctions typeHermite1 xs
    --void $ GP.plotDefault $ plotBasisFunctions typeCubicLinear exs
    --void $ GP.plotDefault $ plotBasisFunctions typeCubicParabola exs
-   {-
+   --{-
    let linearNodes = fit Type.linear xs noisy
        hermite1Nodes = fit Type.hermite1 xs noisy
        cubicLinearNodes = fit Type.cubicLinear exs noisy
@@ -217,4 +217,3 @@ main = do
    printBandedDiff absDiffPair typeHermite1 xs
    printBandedDiff absDiffPair typeCubicLinear exs
    printBandedDiff absDiffPair typeCubicParabola exs
--}
