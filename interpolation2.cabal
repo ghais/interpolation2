@@ -12,7 +12,7 @@ Extra-Source-Files:
 
 Flag buildExamples
   description: Build example executables
-  default:     True
+  default:     False
 
 Flag lapack
   description: Build examples that depend on lapack
@@ -38,7 +38,6 @@ Library
     Numeric.Interpolation.Basis.Compact
     Numeric.Interpolation.Basis.Full
     Numeric.Interpolation.Sample
-    Numeric.Interpolation.Basis
   Other-Modules:
     Numeric.Interpolation.Private.Piece
     Numeric.Interpolation.Private.Basis
